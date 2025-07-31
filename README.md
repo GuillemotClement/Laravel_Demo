@@ -46,3 +46,54 @@ Route::get('/about', function () {
     return ["foo" => "bar"];
 });
 ```
+
+Pour rendre une nouvelle view, on utilise : 
+```php
+Route::get('/', function () {
+    return view('welcome');
+});
+```
+
+# Layout with Laravel Composant
+
+Pour mettre en place les layout, on viens utiliser le moteur de template de Laravel `Blade`.
+
+On viendras créer un nouveau folder `/views/Components/`. Attention de bien respecter le nom.
+
+Dans ce nouveau folder, on pourras venir y placer un fichier `layout.blade.php`. Ce fichier permets de définir le layout global de notre application.
+
+Dans les fichier qui permettent de définir les `views` qui sont placé à la racine du folder `/views/`, on viendras faire référence au `layout` pour l'importer.
+
+Pour faire référence à un composant, on utiliser la balise `<x-<file_name>></x-<file_name>>`. Entre les balises, on viens définis le code spécifique à la page.
+```php
+// home.blade.php
+<!-- on vient faire référence au layout par son nom -> layout faire référence au fichier /Components/layout/blade.php -->
+<x-layout>
+// contenu spécifique à la page
+    <h1>Home page</h1>
+</x-layout>
+```
+
+Dans le fichier de layout, il faudras ensuite venir définir ou le contenu spécfique de la page doit être ajouter :
+```php
+/views/components/layout/blade.php
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Home Page</title>
+    </head>
+    <body>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </nav>
+        <?php echo $slot ?> -> ici on viendras afficher le contenu spécfique de la page qui appelle le layout
+    </body>
+</html>
+```
+## Blade Helper
+
+Blade fournit des outils pour simplifier le code. Par exemple `{{ $slot }}` equivaut à faire `<?php echo $slot ?>`
