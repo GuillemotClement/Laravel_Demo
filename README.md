@@ -119,5 +119,35 @@ Laravel convertis automatiquement cet objet en string, qui sera ainsi interprét
 - `href`: sera automatiquement récupérer par `$attributes`
 - `Home`: sera automatiquement récupérer par `$slot`
 
+## Ajouter des variables dans le composant 
+
+On peut venir définir de nouvelle valeur pour venir afficher du contenu dans un composant enfant.
+```php
+//layout.blade.php
+<h1">{{ $heading }}</h1>
+```
+
+Depuis le composant parent, on peut passer un attribut pour définir la valeur de cet variable
+```php
+//homepage.blade.php
+<x-layout heading="Homepage">
+    <h1>Home page</h1>
+</x-layout>
+```
+
+On pourras également définir des nouveau slot et leur donner un nom
+```php
+<x-layout>
+    <!--    On viens définir un nouveau slot-->
+    <x-slot:heading>
+        Homepage
+    </x-slot:heading>
+    <h1>Hello from the home page</h1>
+</x-layout>
+```
+
+
+
+
 # Tailwind
 
