@@ -97,3 +97,27 @@ Dans le fichier de layout, il faudras ensuite venir définir ou le contenu spéc
 ## Blade Helper
 
 Blade fournit des outils pour simplifier le code. Par exemple `{{ $slot }}` equivaut à faire `<?php echo $slot ?>`
+
+## Passage de donnée à un composant 
+
+Dans le composant enfant, on pourras venir utiliser le `$slot` pour afficher le contenu passer dans les balises depuis le composant parent.
+
+On pourras également utiliser `$attributes` qui convertis automatiquement en un objet dans le composant enfant, les attributs que l'on passer depuis le parent.
+Laravel convertis automatiquement cet objet en string, qui sera ainsi interpréter.
+
+```php
+//composant enfant 
+<a {{ $attributes }}>{{ $slot }}</a>
+```
+- `$attributes` : permet de récupérer les attributs passer depuis le parent
+- `$slot` : permet de récupérer les valeurs passer entre les balises depuis le parent
+
+- Et depuis le composant parent 
+```php
+<x-nav-link href="/">Home</x-nav-link>
+```
+- `href`: sera automatiquement récupérer par `$attributes`
+- `Home`: sera automatiquement récupérer par `$slot`
+
+# Tailwind
+

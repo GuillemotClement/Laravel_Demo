@@ -7,9 +7,11 @@
     </head>
     <body>
         <nav>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
+<!--            On fait appelle au composant nav-link -->
+<!--            le contenu passer dans les balise sera utiliser dans le composant -->
+            <x-nav-link href="/">Home</x-nav-link>
+            <x-nav-link href="/about" style="color: green">About</x-nav-link>
+            <x-nav-link href="/contact">Contact</x-nav-link>
         </nav>
 <!--        Fait référence au contenu de la page qui utilise le layout-->
 <!--     Syntaxe longue   --><?php //echo $slot ?>
